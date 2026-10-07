@@ -153,7 +153,10 @@ export function PWAInstallBanner({ lang, onToast }: PWAInstallBannerProps) {
         <div className="pwa-text-box">
           <div className="pwa-badge-row">
             <span className="pwa-badge">{t.badge}</span>
-            <span className="pwa-offline-tag">100% Offline</span>
+            <span className="pwa-offline-tag">
+              <span className="pwa-offline-dot" />
+              100% Offline
+            </span>
           </div>
           <h4 className="pwa-title">{t.title}</h4>
           <p className="pwa-sub">{t.sub}</p>

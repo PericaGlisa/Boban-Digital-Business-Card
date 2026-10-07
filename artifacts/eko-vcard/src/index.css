@@ -495,16 +495,7 @@ body {
   text-transform: lowercase;
 }
 
-/* ── Share ── */
-.btn-share {
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.9);
-  border: 1px solid rgba(255,255,255,0.22);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.24);
-  min-height: 50px;
-  font-size: 0.8125rem;
-}
-.btn-share:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+/* ── Share (styled in DUAL ACTION ROW below) ── */
 
 /* ── Save Contact — bottom primary ── */
 .save-wrap {
@@ -1098,16 +1089,20 @@ body {
 .pwa-badge-row {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.15rem;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  row-gap: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .pwa-badge {
-  font-size: 0.58rem;
+  font-size: 0.56rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: #38bdf8;
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .pwa-offline-tag {
@@ -1117,8 +1112,36 @@ body {
   background: rgba(34, 197, 94, 0.2);
   color: #86efac;
   border: 1px solid rgba(34, 197, 94, 0.35);
-  padding: 1px 5px;
+  padding: 1.5px 6px;
   border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  line-height: 1.2;
+}
+
+.pwa-offline-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px #22c55e;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: pwa-offline-pulse 2s ease-in-out infinite;
+}
+
+@keyframes pwa-offline-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
 }
 
 .pwa-title {
@@ -1203,13 +1226,31 @@ body {
 .share-action-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.6rem;
+  gap: 0.55rem;
   width: 100%;
 }
 
-.btn-qr-trigger {
+.btn-qr-trigger,
+.btn-share {
   min-height: 52px;
   border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.65rem;
+  gap: 0.32rem; /* Tight, snug icon-to-text spacing so icon never drifts */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.btn-qr-trigger {
   background: linear-gradient(
     135deg,
     rgba(30, 58, 138, 0.5) 0%,
@@ -1217,18 +1258,10 @@ body {
   );
   border: 1px solid rgba(147, 197, 253, 0.25);
   color: #f1f5f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  position: relative;
-  overflow: hidden;
 }
 
 .btn-qr-trigger:hover {
@@ -1244,6 +1277,46 @@ body {
 
 .btn-qr-trigger:active {
   transform: translateY(1px);
+}
+
+.btn-share {
+  background: rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  width: auto;
+}
+
+.btn-share:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+.btn-share:active {
+  transform: translateY(1px);
+}
+
+.btn-share svg,
+.btn-qr-trigger svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  display: block;
+}
+
+.btn-share .btn-label,
+.btn-qr-trigger span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 /* ════════════════════════════════════════
@@ -1660,4 +1733,181 @@ body {
 .btn-ios-done:hover {
   filter: brightness(1.1);
 }
+
+/* ════════════════════════════════════════
+   RESPONSIVE DESIGN ACROSS ALL SCREENS
+════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .pwa-banner-card {
+    padding: 0.75rem 0.85rem;
+    gap: 0.6rem;
+    border-radius: 16px;
+  }
+  .pwa-icon-box {
+    width: 38px;
+    height: 38px;
+  }
+  .pwa-mini-icon {
+    width: 26px;
+    height: 26px;
+  }
+  .pwa-title {
+    font-size: 0.82rem;
+  }
+  .pwa-sub {
+    font-size: 0.65rem;
+  }
+  .pwa-btn-install {
+    padding: 0.44rem 0.7rem;
+    font-size: 0.7rem;
+    gap: 0.28rem;
+  }
+  .pwa-badge {
+    font-size: 0.54rem;
+  }
+  .pwa-offline-tag {
+    font-size: 0.5rem;
+    padding: 1.5px 5px;
+  }
+  .btn-share,
+  .btn-qr-trigger {
+    padding: 0 0.55rem;
+    gap: 0.3rem;
+  }
+  .btn-share .btn-label,
+  .btn-qr-trigger span {
+    font-size: 0.76rem;
+    letter-spacing: 0.025em;
+  }
+}
+
+@media (max-width: 380px) {
+  .actions-zone {
+    padding: 0.9rem 1rem;
+  }
+  .pwa-banner-card {
+    padding: 0.7rem 0.75rem;
+    gap: 0.5rem;
+  }
+  .pwa-icon-box {
+    width: 36px;
+    height: 36px;
+  }
+  .pwa-mini-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .pwa-title {
+    font-size: 0.8rem;
+  }
+  .pwa-sub {
+    font-size: 0.63rem;
+  }
+  .pwa-btn-install {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.67rem;
+    gap: 0.25rem;
+  }
+  .pwa-badge {
+    font-size: 0.52rem;
+  }
+  .pwa-offline-tag {
+    font-size: 0.49rem;
+    padding: 1px 4.5px;
+    gap: 0.22rem;
+  }
+  .pwa-offline-dot {
+    width: 4.5px;
+    height: 4.5px;
+  }
+  .share-action-row {
+    gap: 0.45rem;
+  }
+  .btn-share,
+  .btn-qr-trigger {
+    min-height: 48px;
+    padding: 0 0.45rem;
+    gap: 0.28rem;
+  }
+  .btn-share .btn-label,
+  .btn-qr-trigger span {
+    font-size: 0.72rem;
+    letter-spacing: 0.015em;
+  }
+  .btn-share svg,
+  .btn-qr-trigger svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 340px) {
+  .card-wrap {
+    padding-inline: 0.4rem;
+  }
+  .actions-zone {
+    padding: 0.8rem 0.75rem;
+  }
+  .pwa-banner-card {
+    padding: 0.65rem 0.65rem;
+    gap: 0.4rem;
+  }
+  .pwa-icon-box {
+    width: 32px;
+    height: 32px;
+  }
+  .pwa-mini-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .pwa-btn-install {
+    padding: 0.38rem 0.52rem;
+    font-size: 0.64rem;
+  }
+  .pwa-offline-tag {
+    font-size: 0.46rem;
+    padding: 1px 4px;
+  }
+  .btn-share,
+  .btn-qr-trigger {
+    min-height: 46px;
+    padding: 0 0.35rem;
+    gap: 0.25rem;
+  }
+  .btn-share .btn-label,
+  .btn-qr-trigger span {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 310px) {
+  .pwa-banner-card {
+    flex-wrap: wrap;
+    padding: 0.65rem;
+  }
+  .pwa-actions {
+    width: 100%;
+    margin-top: 0.35rem;
+  }
+  .pwa-btn-install {
+    width: 100%;
+    justify-content: center;
+    padding: 0.45rem;
+  }
+  .share-action-row {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+  .btn-share,
+  .btn-qr-trigger {
+    min-height: 48px;
+    padding: 0 0.9rem;
+    gap: 0.35rem;
+  }
+  .btn-share .btn-label,
+  .btn-qr-trigger span {
+    font-size: 0.76rem;
+  }
+}
+
 

@@ -250,10 +250,10 @@ function IcoExternal() {
   );
 }
 
-function IcoShare() {
+function IcoShare({ size = 18 }: { size?: number }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, display: "block" }}>
       <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
       <polyline points="16 6 12 2 8 6"/>
       <line x1="12" y1="2" x2="12" y2="15"/>
@@ -269,10 +269,10 @@ function IcoWA() {
   );
 }
 
-function IcoQrCode({ size = 20 }: { size?: number }) {
+function IcoQrCode({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+      strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, display: "block" }}>
       <rect width="6" height="6" x="3" y="3" rx="1.5" />
       <rect width="6" height="6" x="15" y="3" rx="1.5" />
       <rect width="6" height="6" x="3" y="15" rx="1.5" />
