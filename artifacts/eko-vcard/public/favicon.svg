@@ -1,0 +1,27 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bg" x1="25" y1="20" x2="236" y2="240" gradientUnits="userSpaceOnUse">
+<stop stop-color="#10285E"/>
+<stop offset="0.58" stop-color="#1C4CB2"/>
+<stop offset="1" stop-color="#17A152"/>
+</linearGradient>
+<linearGradient id="ice" x1="70" y1="62" x2="188" y2="195" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EAF5FF"/>
+<stop offset="1" stop-color="#A5D5FF"/>
+</linearGradient>
+</defs>
+<rect x="14" y="14" width="228" height="228" rx="54" fill="url(#bg)"/>
+<rect x="14" y="14" width="228" height="228" rx="54" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+<circle cx="128" cy="128" r="16" fill="url(#ice)"/>
+<g stroke="url(#ice)" stroke-width="9" stroke-linecap="round">
+<path d="M128 47V103"/>
+<path d="M128 153V209"/>
+<path d="M47 128H103"/>
+<path d="M153 128H209"/>
+<path d="M71.8 71.8L111.4 111.4"/>
+<path d="M144.6 144.6L184.2 184.2"/>
+<path d="M184.2 71.8L144.6 111.4"/>
+<path d="M111.4 144.6L71.8 184.2"/>
+</g>
+<circle cx="128" cy="128" r="44" stroke="rgba(226,242,255,0.82)" stroke-width="5"/>
+</svg>

@@ -1,0 +1,49 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bg" x1="80" y1="30" x2="1120" y2="630" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0A1F4A"/>
+<stop offset="0.58" stop-color="#143A89"/>
+<stop offset="1" stop-color="#148443"/>
+</linearGradient>
+<radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(270 170) rotate(28) scale(320 240)">
+<stop stop-color="#66A4FF" stop-opacity="0.56"/>
+<stop offset="1" stop-color="#66A4FF" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 510) rotate(-17) scale(370 250)">
+<stop stop-color="#34D37B" stop-opacity="0.46"/>
+<stop offset="1" stop-color="#34D37B" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="ice" x1="120" y1="92" x2="352" y2="348" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F3FAFF"/>
+<stop offset="1" stop-color="#ACE2FF"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="630" rx="44" fill="url(#bg)"/>
+<rect width="1200" height="630" rx="44" fill="url(#glowA)"/>
+<rect width="1200" height="630" rx="44" fill="url(#glowB)"/>
+<rect x="36" y="36" width="1128" height="558" rx="34" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+
+<g transform="translate(112 120)">
+<rect width="254" height="254" rx="54" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+<circle cx="127" cy="127" r="18" fill="url(#ice)"/>
+<g stroke="url(#ice)" stroke-width="10" stroke-linecap="round">
+<path d="M127 34V97"/>
+<path d="M127 157V220"/>
+<path d="M34 127H97"/>
+<path d="M157 127H220"/>
+<path d="M62.5 62.5L106.5 106.5"/>
+<path d="M147.5 147.5L191.5 191.5"/>
+<path d="M191.5 62.5L147.5 106.5"/>
+<path d="M106.5 147.5L62.5 191.5"/>
+</g>
+<circle cx="127" cy="127" r="52" stroke="rgba(229,244,255,0.84)" stroke-width="6"/>
+</g>
+
+<text x="420" y="190" fill="#FFFFFF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="0.01em">
+<tspan x="420" dy="0">EKO</tspan>
+<tspan x="420" dy="88">ELEKTROFRIGO</tspan>
+</text>
+<text x="420" y="340" fill="#9CD3FF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="600" letter-spacing="0.11em">DIGITAL CONTACT HUB</text>
+<text x="420" y="424" fill="#D5EBFF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="36" font-weight="500">Cooling Excellence. Trusted Since 1996.</text>
+<text x="420" y="496" fill="#D5EBFF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="500">Refrigeration • Air Conditioning • CA Rooms</text>
+</svg>
