@@ -1037,3 +1037,627 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ════════════════════════════════════════
+   PWA INSTALL BANNER & INSTALLED PILL
+════════════════════════════════════════ */
+.pwa-banner-card {
+  margin: 0.85rem 0 0.4rem;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 40, 94, 0.65) 0%,
+    rgba(22, 163, 74, 0.22) 100%
+  );
+  border: 1px solid rgba(134, 239, 172, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+.pwa-banner-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.pwa-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.pwa-mini-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.pwa-text-box {
+  flex: 1;
+  min-width: 0;
+}
+
+.pwa-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.15rem;
+}
+
+.pwa-badge {
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
+.pwa-offline-tag {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  padding: 1px 5px;
+  border-radius: 6px;
+}
+
+.pwa-title {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.pwa-sub {
+  margin: 0.12rem 0 0;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pwa-actions {
+  flex-shrink: 0;
+}
+
+.pwa-btn-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pwa-btn-install:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.5);
+  filter: brightness(1.08);
+}
+
+.pwa-btn-install:active {
+  transform: translateY(1px);
+}
+
+.pwa-installed-pill {
+  margin: 0.6rem 0 0.3rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  gap: 0.45rem;
+}
+
+.pwa-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+}
+
+.pwa-installed-text {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #bbf7d0;
+  letter-spacing: 0.02em;
+}
+
+/* ════════════════════════════════════════
+   DUAL ACTION ROW (QR + SHARE)
+════════════════════════════════════════ */
+.share-action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.btn-qr-trigger {
+  min-height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.5) 0%,
+    rgba(15, 23, 42, 0.65) 100%
+  );
+  border: 1px solid rgba(147, 197, 253, 0.25);
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-qr-trigger:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.6) 0%,
+    rgba(30, 58, 138, 0.75) 100%
+  );
+  border-color: rgba(147, 197, 253, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+}
+
+.btn-qr-trigger:active {
+  transform: translateY(1px);
+}
+
+/* ════════════════════════════════════════
+   QR CODE MODAL
+════════════════════════════════════════ */
+/* Shared modal scroll-and-center technique:
+   The backdrop is a full-screen scroll container. Inside it, an invisible
+   flex-centering wrapper handles alignment without fighting overflow:auto. */
+.qr-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(2, 6, 14, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Use CSS grid — the only layout that centers correctly inside overflow:auto */
+  display: grid;
+  grid-template-rows: minmax(100%, auto);
+  padding: max(1.25rem, env(safe-area-inset-top, 1.25rem)) 1.25rem
+           max(1.25rem, env(safe-area-inset-bottom, 1.25rem)) 1.25rem;
+  animation: qrFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes qrFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* The inner flex wrapper sits inside the grid cell and handles centering */
+.qr-modal-backdrop > .qr-modal-card {
+  margin: auto;
+}
+
+.qr-modal-card {
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(
+    170deg,
+    rgba(15, 28, 55, 0.96) 0%,
+    rgba(7, 14, 30, 0.98) 100%
+  );
+  border: 1px solid rgba(147, 197, 253, 0.25);
+  border-radius: 28px;
+  padding: 1.6rem 1.4rem 1.4rem;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: qrScaleUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes qrScaleUp {
+  from {
+    transform: scale(0.92) translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.qr-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qr-modal-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.qr-modal-header {
+  margin-bottom: 1.1rem;
+}
+
+.qr-modal-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #4ade80;
+  background: rgba(34, 197, 94, 0.14);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 0.4rem;
+}
+
+.qr-modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.qr-modal-sub {
+  margin: 0.3rem 0 0;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  max-width: 280px;
+  line-height: 1.35;
+}
+
+.qr-canvas-wrap {
+  background: #ffffff;
+  padding: 0.85rem;
+  border-radius: 22px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.qr-img {
+  width: 220px;
+  height: 220px;
+  display: block;
+  border-radius: 12px;
+}
+
+.qr-loading {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 1.5rem;
+}
+
+.qr-url-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  color: #38bdf8;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin: 0 0 0.85rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qr-url-pill:hover {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #7dd3fc;
+  transform: translateY(-1px);
+}
+
+.qr-url-pill:active {
+  transform: translateY(1px);
+}
+
+.qr-owner-label {
+  margin: 0 0 1.1rem;
+  font-size: 0.76rem;
+  color: #cbd5e1;
+}
+
+.qr-owner-label strong {
+  color: #ffffff;
+}
+
+.qr-actions {
+  display: flex;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.btn-qr-download {
+  flex: 1.4;
+  min-height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Tighter icon-to-text gap */
+  gap: 0.3rem;
+  padding: 0 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
+}
+
+.btn-qr-download:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.5);
+}
+
+.btn-qr-download:active {
+  transform: translateY(1px);
+}
+
+.btn-qr-copy {
+  flex: 1;
+  min-height: 46px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-qr-copy:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.qr-footer-hint {
+  margin: 0.9rem 0 0;
+  font-size: 0.65rem;
+  color: #64748b;
+  letter-spacing: 0.02em;
+}
+
+/* ════════════════════════════════════════
+   iOS INSTRUCTIONS MODAL
+════════════════════════════════════════ */
+.ios-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(2, 6, 14, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* Same reliable grid centering technique as QR modal */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-rows: minmax(100%, auto);
+  padding: max(1.25rem, env(safe-area-inset-top, 1.25rem)) 1.25rem
+           max(1.25rem, env(safe-area-inset-bottom, 1.25rem)) 1.25rem;
+  animation: qrFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-modal-backdrop > .ios-modal-card {
+  margin: auto;
+}
+
+.ios-modal-card {
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(
+    170deg,
+    rgba(15, 28, 55, 0.96) 0%,
+    rgba(7, 14, 30, 0.98) 100%
+  );
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 28px;
+  padding: 1.6rem 1.4rem 1.4rem;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: qrScaleUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-modal-header {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.ios-icon-emblem {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.ios-modal-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.ios-modal-sub {
+  margin: 0.3rem 0 0;
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+.ios-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.ios-step-item {
+  display: flex;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8rem;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.ios-step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #38bdf8;
+  color: #060e1e;
+  font-weight: 800;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ios-step-content {
+  flex: 1;
+}
+
+.ios-step-content strong {
+  display: block;
+  font-size: 0.82rem;
+  color: #ffffff;
+  margin-bottom: 0.15rem;
+}
+
+.ios-step-content p {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+
+.ios-visual-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin-top: 0.45rem;
+}
+
+.ios-visual-hint span {
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.ios-step-final {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #6ee7b7;
+  text-align: center;
+  font-weight: 600;
+}
+
+.btn-ios-done {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ios-done:hover {
+  filter: brightness(1.1);
+}
+

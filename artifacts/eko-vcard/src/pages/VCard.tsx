@@ -1,4 +1,6 @@
 import { useState, useRef, useCallback } from "react";
+import { PWAInstallBanner } from "@/components/PWAInstallBanner";
+import { QRCodeModal } from "@/components/QRCodeModal";
 
 /* ════════════════════════════════════════
    CONTACT DATA
@@ -9,6 +11,7 @@ const C = {
   nameUpper: "BOBAN ČELAREVIĆ",
   initials: "BČ",
   company: "EKO ELEKTROFRIGO d.o.o.",
+  cardUrl: "https://boban-eef.netlify.app/",
 
   // Mobile (Primary for call & WhatsApp)
   mob: "+381648222650",
@@ -65,6 +68,7 @@ const UI = {
     whatsapp: "WhatsApp Poruka",
     email: "Email",
     shareCard: "Podeli Karticu",
+    qrBtn: "Prikaži QR Kod",
     locationsTitle: "Lokacije i Adrese",
     hqLabel: "Sedište kompanije",
     wholesales: "Veleprodaja, magacin",
@@ -102,6 +106,7 @@ const UI = {
     whatsapp: "WhatsApp Message",
     email: "Email",
     shareCard: "Share This Card",
+    qrBtn: "Show QR Code",
     locationsTitle: "Locations & Addresses",
     hqLabel: "Headquarters",
     wholesales: "Wholesale & Warehouse",
@@ -264,6 +269,21 @@ function IcoWA() {
   );
 }
 
+function IcoQrCode({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="6" height="6" x="3" y="3" rx="1.5" />
+      <rect width="6" height="6" x="15" y="3" rx="1.5" />
+      <rect width="6" height="6" x="3" y="15" rx="1.5" />
+      <path d="M15 15h2v2h-2z" />
+      <path d="M21 15v6h-6" />
+      <path d="M21 9v2" />
+      <path d="M9 21H7" />
+    </svg>
+  );
+}
+
 /* ════════════════════════════════════════
    RIPPLE HOOK
 ════════════════════════════════════════ */
@@ -301,6 +321,7 @@ export default function VCard() {
   const [lang, setLang] = useState<"sr" | "en">(getInitialLanguage);
   const [toast, setToast] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [showQR, setShowQR] = useState(false);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const t = UI[lang];
@@ -310,6 +331,7 @@ export default function VCard() {
   const emailRipple = useRipple();
   const saveRipple = useRipple();
   const shareRipple = useRipple();
+  const qrRipple = useRipple();
 
   const isIOS =
     typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -370,13 +392,13 @@ export default function VCard() {
     const shareData = {
       title: t.shareTitle,
       text: t.shareText,
-      url: window.location.href,
+      url: C.cardUrl,
     };
     try {
       if (navigator.share) {
         await navigator.share(shareData);
       } else {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(C.cardUrl);
         showMsg(t.linkCopied);
       }
     } catch {
@@ -466,6 +488,9 @@ export default function VCard() {
               </button>
             </div>
             <p className="save-note">{t.saveCompatibility}</p>
+
+            {/* PWA Install Banner */}
+            <PWAInstallBanner lang={lang} onToast={showMsg} />
 
             {/* 1. Mobile Phone (Prominent Dial + Copy) */}
             <div className="btn-group is-call">
@@ -602,16 +627,30 @@ export default function VCard() {
               </button>
             </div>
 
-            {/* 7. Share This Card */}
-            <button
-              className="btn btn-share"
-              onClick={(e) => { shareRipple.fire(e); shareCard(); }}
-              onTouchStart={shareRipple.fire}
-              aria-label={t.shareCard}>
-              <IcoShare />
-              <span className="btn-label">{t.shareCard}</span>
-              {shareRipple.els}
-            </button>
+            {/* 7. Dual Action: QR Code Hub + Share Card */}
+            <div className="share-action-row">
+              <button
+                className="btn-qr-trigger"
+                onClick={(e) => { qrRipple.fire(e); setShowQR(true); }}
+                onTouchStart={qrRipple.fire}
+                type="button"
+                aria-label={t.qrBtn}>
+                <IcoQrCode />
+                <span>{t.qrBtn}</span>
+                {qrRipple.els}
+              </button>
+
+              <button
+                className="btn btn-share"
+                onClick={(e) => { shareRipple.fire(e); shareCard(); }}
+                onTouchStart={shareRipple.fire}
+                type="button"
+                aria-label={t.shareCard}>
+                <IcoShare />
+                <span className="btn-label">{t.shareCard}</span>
+                {shareRipple.els}
+              </button>
+            </div>
 
           </div>
 
@@ -687,6 +726,18 @@ export default function VCard() {
 
       {/* Floating Notification Toast */}
       <div className={`toast-pill ${showToast ? "show" : ""}`}>{toast}</div>
+
+      {/* QR Code Presentation & Download Modal */}
+      <QRCodeModal
+        isOpen={showQR}
+        onClose={() => setShowQR(false)}
+        url={C.cardUrl}
+        name={C.name}
+        title={t.position}
+        company={C.company}
+        lang={lang}
+        onToast={showMsg}
+      />
     </>
   );
 }
